@@ -2,10 +2,14 @@ package Views;
 
 import javax.swing.*;
 
+import Listeners.ExibeClientesListener;
+import Listeners.NovoClienteListener;
+
 import java.awt.*;
-import Listeners.*;
 
 public class FormPrincipal extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static JMenuBar mainMenu;
 	private static JPanel mainPanel;

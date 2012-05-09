@@ -49,7 +49,7 @@ public class FormClientes extends JFrame {
 		
 		btnNovoCliente.addActionListener(new NovoClienteListener());
 		btnDelCliente.addActionListener(new DeletaClienteListener());
-		btnEditCliente.addActionListener(new ExibeClienteListener());
+		//btnEditCliente.addActionListener(new ExibeClienteListener());
 		
 		menuPanel.add(btnNovoCliente);
 		menuPanel.add(btnDelCliente);
