@@ -2,17 +2,15 @@ package Views;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.MaskFormatter;
-
-import Listeners.NovoClienteListener;
 import Listeners.SalvaClienteListener;
 
 import java.awt.*;
-import java.text.ParseException;
 
 import Entidades.Cliente;
 
 public class FormNovoCliente extends JFrame{
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static JPanel mainPanel, formPanel;
 	public static JTextField	txtNome, txtEmail, txtCpf, txtEndereco, txtNumero, txtBairro, txtUf, txtCidade, txtCep, txtTelefone, txtCelular, txtTelRecado;
@@ -30,18 +28,18 @@ public class FormNovoCliente extends JFrame{
 		cons.gridx = 0;
 		cons.gridy = 0;
 		cons.insets= new Insets(5,5,5,5);
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Nome: "),cons);
 			
 		cons.gridx   = 1;
 		cons.gridy 	 = 0;
-		cons.anchor = cons.WEST;
+		cons.anchor = GridBagConstraints.WEST;
 		txtNome = new JTextField(15);
 		formPanel.add( txtNome, cons);
 		
 		cons.gridx = 0;
 		cons.gridy = 1;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Email: "),cons);
 		
 		cons.gridx = 1;
@@ -51,7 +49,7 @@ public class FormNovoCliente extends JFrame{
 		
 		cons.gridx = 0;
 		cons.gridy = 2;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("CPF: "), cons);
 		
 		cons.gridx = 1;
@@ -61,7 +59,7 @@ public class FormNovoCliente extends JFrame{
 		
 		cons.gridx = 0;
 		cons.gridy = 3;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Endere�o: "), cons);
 		
 		cons.gridx = 1;
@@ -70,17 +68,17 @@ public class FormNovoCliente extends JFrame{
 		formPanel.add( txtEndereco, cons);
 		
 		cons.gridx = 2;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("N�mero: "), cons);
 		
 		cons.gridx = 3;
 		txtNumero  = new JTextField(5);
-		cons.anchor = cons.WEST;
+		cons.anchor = GridBagConstraints.WEST;
 		formPanel.add( txtNumero, cons);
 		
 		cons.gridx = 0;
 		cons.gridy = 4;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Bairro:"),cons);
 		
 		cons.gridx = 1;
@@ -110,22 +108,22 @@ public class FormNovoCliente extends JFrame{
 		
 		cons.gridx = 2;
 		cons.gridy = 5;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("CEP:"),cons);
 		
 		cons.gridx = 3;
 		txtCep     = new JTextField(10);
-		cons.anchor = cons.WEST;
+		cons.anchor = GridBagConstraints.WEST;
 		formPanel.add( txtCep , cons);
 
 		cons.gridx = 0;
 		cons.gridy = 6;
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Telefone:"),cons);
 		
 		cons.gridx 		= 1;
 		txtTelefone     = new JTextField(15);
-		cons.anchor = cons.EAST;
+		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add( txtTelefone , cons);
 
 

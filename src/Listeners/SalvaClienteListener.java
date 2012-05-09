@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import Views.FormNovoCliente;
-import Views.FormClientes;
 import Entidades.Cliente;
 import Models.ClienteModel;
 
