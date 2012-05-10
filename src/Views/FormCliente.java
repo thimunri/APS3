@@ -9,11 +9,9 @@ public class FormCliente extends JFrame{
 
 	public FormCliente(Cliente cliente){
 
+			super("Fiction Locadora de Veículos  - Visualizar / Editar Cliente");
 			this.setSize(800,600);
-			this.setTitle("Cliente");
 			this.setVisible(true);
-			
-			System.out.println(cliente);
 	}
 	
 }

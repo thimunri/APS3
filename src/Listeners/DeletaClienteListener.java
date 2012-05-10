@@ -14,25 +14,25 @@ public class DeletaClienteListener implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		String cod, nome;
 		int linha;
-		
-		linha = FormClientes.getSelectedCliente();
-		
-		
+
+		linha = FormClientes.getLinhaSelecionada();
+
+
 		if( linha >= 0 ){
 			ClienteModel model = new ClienteModel();
 			cod		=	FormClientes.getCod(linha);
 			nome	=	FormClientes.getNome(linha);
-			
+
 			if (JOptionPane.showConfirmDialog(null, "Deseja realmente remover o cliente '" + nome + " (Cod:"+cod+")'? ") == 0){
-							
+
 				//Remove do banco de dados
 				model.removeCliente( cod );
-				
+
 				//Remove da tabela
 				FormClientes.removeLinha(linha);
-				
+
 				JOptionPane.showMessageDialog(null, "Cliente removido!");
-				
+
 			}
 		}//end if	
 		else {

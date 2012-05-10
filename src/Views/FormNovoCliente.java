@@ -201,6 +201,7 @@ public class FormNovoCliente extends JFrame{
 	
 	
 	public void inicializaComponentes(){
+		
 		mainPanel = new JPanel( new BorderLayout());
 		formPanel = new JPanel();
 		

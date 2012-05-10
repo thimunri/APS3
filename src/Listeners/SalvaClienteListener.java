@@ -11,6 +11,7 @@ import Models.ClienteModel;
 import Util.Cpf;
 
 public class SalvaClienteListener implements ActionListener {
+		
 	
 		public void actionPerformed(ActionEvent e){
 				
@@ -23,11 +24,11 @@ public class SalvaClienteListener implements ActionListener {
 				}
 				
 				else if( novoCliente.email.equals("")){
-					JOptionPane.showMessageDialog(null,"Voc� precisa informar o email do cliente","Alerta",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Você precisa informar o email do cliente","Alerta",JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 				else if(novoCliente.cpf.equals("")){
-					JOptionPane.showMessageDialog(null,"Voc� precisa informar o CPF do cliente","Alerta",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Você precisa informar o CPF do cliente","Alerta",JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 				else if(!Cpf.validaCPF(novoCliente.cpf)){
@@ -35,7 +36,7 @@ public class SalvaClienteListener implements ActionListener {
 				}
 				
 				else if(modelo_cliente.verifyClienteExists("cpf", novoCliente.cpf) > 0){
-					JOptionPane.showMessageDialog(null,"Este CPF j� est� cadastrado no sistema","Alerta",JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null,"Este CPF já está cadastrado no sistema","Alerta",JOptionPane.INFORMATION_MESSAGE);
 				}
 				
 				else { 

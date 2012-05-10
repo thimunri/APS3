@@ -2,13 +2,10 @@ package Views;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
-import javax.swing.table.DefaultTableModel;
 
 import Entidades.Cliente;
 import Listeners.*;
@@ -21,7 +18,7 @@ public class FormClientes extends JFrame {
 	private static JPanel mainPanel, menuPanel;
 	private static JButton btnNovoCliente, btnDelCliente, btnEditCliente;
 	private static JTable table;
-	public static DefaultTableModel modelClientes;
+	public static DefaultTableClientes modelClientes;
 	
 	
 	public FormClientes(){
@@ -31,7 +28,7 @@ public class FormClientes extends JFrame {
 			inicializaComponentes();
 	}
 	
-	public static DefaultTableModel getModel(){
+	public static DefaultTableClientes getModel(){
 		return modelClientes;
 	}
 	
@@ -45,26 +42,19 @@ public class FormClientes extends JFrame {
 		btnDelCliente	= new JButton("Remover Cliente");
 		btnEditCliente	= new JButton("Editar Ciente");
 		
+		
 		btnNovoCliente.addActionListener(new NovoClienteListener());
 		btnDelCliente.addActionListener(new DeletaClienteListener());
-		//btnEditCliente.addActionListener(new ExibeClienteListener());
+		btnEditCliente.addActionListener(new ExibeClienteListener());
 		
 		menuPanel.add(btnNovoCliente);
 		menuPanel.add(btnDelCliente);
 		menuPanel.add(btnEditCliente);
 		
-		String[] colunas = new String[]{"COD", "Nome", "Email", "CPF", "Telefone", "Celular", "Telefone Recado", "Endereco", "Bairro", "Cidade", "UF","CEP"};
-		
-		modelClientes	= new DefaultTableModel(null,colunas);
+		modelClientes	= new DefaultTableClientes();
 		populaTabela();
 		
 		table  			= new JTable( modelClientes );
-		table.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-		          if(e.getClickCount() == 2)  
-		            setTitle("Duplo-clique detectado.");
-		          }
-		});
 		
 		JScrollPane scroll = new JScrollPane( table );
 		
@@ -97,9 +87,15 @@ public class FormClientes extends JFrame {
 	}
 	
 	
-	
-	public static int getSelectedCliente(){
+	public static int getLinhaSelecionada(){
 		return table.getSelectedRow();
+	}
+	
+	public static Cliente getSelectedCliente(){
+		Cliente c = new Cliente();
+		
+		c.nome = "Thiago Muniz";
+		return c;
 	}
 	
 	
