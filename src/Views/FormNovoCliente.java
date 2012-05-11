@@ -89,10 +89,10 @@ public class FormNovoCliente extends JFrame{
 		formPanel.add(new JLabel("UF:"), cons);
 		
 		cons.gridx = 3;
-		String[] ufs = new String[]{"Acre - AC","Alagoas - AL","Amap� - AP","Amazonas - AM","Bahia  - BA","Cear� - CE","Distrito Federal  - DF",
-		"Esp�rito Santo - ES","Goi�s - GO","Maranh�o - MA","Mato Grosso - MT","Mato Grosso do Sul - MS","Minas Gerais - MG","Par� - PA",
-		"Para�ba - PB","Paran� - PR","Pernambuco - PE","Piau� - PI","Rio de Janeiro - RJ","Rio Grande do Norte - RN","Rio Grande do Sul - RS",
-		"Rond�nia - RO","Roraima - RR","Santa Catarina - SC","S�o Paulo - SP","Sergipe - SE","Tocantins - TO"};
+		String[] ufs = new String[]{"Acre - AC","Alagoas - AL","Amapá - AP","Amazonas - AM","Bahia  - BA","Ceará - CE","Distrito Federal  - DF",
+				"Espirito Santo - ES","Goias - GO","Maranhão - MA","Mato Grosso - MT","Mato Grosso do Sul - MS","Minas Gerais - MG","Pará - PA",
+				"Paraíba - PB","Paraná - PR","Pernambuco - PE","Piauí - PI","Rio de Janeiro - RJ","Rio Grande do Norte - RN","Rio Grande do Sul - RS",
+				"Rondônia - RO","Roraima - RR","Santa Catarina - SC","São Paulo - SP","Sergipe - SE","Tocantins - TO"};
 		
 		comboUf	=	new JComboBox(ufs);
 		comboUf.setSelectedIndex(24);
@@ -146,7 +146,7 @@ public class FormNovoCliente extends JFrame{
 		
 				
 		
-		formPanel.setBorder(new TitledBorder("Informa��es Pessoais"));
+		formPanel.setBorder(new TitledBorder("Informações Pessoais"));
 		
 		JPanel panel = new JPanel(new BorderLayout());
 		
