@@ -125,6 +125,10 @@ public class ClienteModel extends Model {
 		catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		
+		catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, "Erro! Não foi possível obter a lista de clientes. \nVerifique se o banco de dados está sendo utilizado por outro processo e tente novamente");
+		}
 
 		return clientes;
 

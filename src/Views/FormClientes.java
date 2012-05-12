@@ -94,7 +94,20 @@ public class FormClientes extends JFrame {
 	public static Cliente getSelectedCliente(){
 		Cliente c = new Cliente();
 		
-		c.nome = "Thiago Muniz";
+		int linha = table.getSelectedRow();
+		
+		c.nome 			= (String) modelClientes.getValueAt(linha, 1);
+		c.email			= (String) modelClientes.getValueAt(linha, 2);
+		c.cpf			= (String) modelClientes.getValueAt(linha, 3);
+		c.telefone		= (String) modelClientes.getValueAt(linha, 4);
+		c.celular		= (String) modelClientes.getValueAt(linha, 5);
+		c.telRecado		= (String) modelClientes.getValueAt(linha, 6);
+		c.logradouro	= (String) modelClientes.getValueAt(linha, 7);
+		c.bairro		= (String) modelClientes.getValueAt(linha, 8);
+		c.cidade		= (String) modelClientes.getValueAt(linha, 9);
+		c.uf			= (String) modelClientes.getValueAt(linha, 10);
+		c.cep			= (String) modelClientes.getValueAt(linha, 11);
+		
 		return c;
 	}
 	

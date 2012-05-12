@@ -12,3 +12,4 @@
                                                                                      
 14,Adriano Soares,adrianomsoares@hotmail.com,33695139862,"","","",Desembargador Alberto Garcia,S?o Paulo,Jardim Jabaquara,S?o Paulo - SP,04383120
                                                                 
+16,Thiago,thigo.muniz@gmail.com,34052261801,11 4685-3059,11 86380837,11 85758526,"Rua Jos? Vaz de Oliveira, 51",tabo?o da serra,Pq. pinheiros,S?o Paulo - SP,06767190

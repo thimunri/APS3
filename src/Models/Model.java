@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 public class Model {
 
 	private static Connection conn;
@@ -42,6 +44,10 @@ public class Model {
 		
 		catch (SQLException e) {
 			System.out.println(e.getMessage());
+		}
+		
+		catch(NullPointerException e){
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 	}

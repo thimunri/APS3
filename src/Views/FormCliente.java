@@ -55,40 +55,52 @@ public class FormCliente extends JFrame{
 		JPanel	formPanel		=	new JPanel(new GridBagLayout());
 		GridBagConstraints cons = new GridBagConstraints();
 		
+		
+		//NOME
 		cons.gridx  = 0;
 		cons.gridy  = 0;
 		cons.insets = new Insets(5,5,5,5);
 		cons.anchor = GridBagConstraints.WEST;
 		formPanel.add(new JLabel("Nome: "),cons);
 		
-		
 		cons.gridx = 1;
 		JTextField txtNome = new JTextField(15);
 		txtNome.setText(cliente.nome);
 		formPanel.add(txtNome);
 		
+		
+		
+		//EMAIL
 		cons.gridx = 3;
 		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Email: "),cons);
 		
 		cons.gridx = 4;
-		formPanel.add(new JTextField(15),cons);
+		JTextField txtEmail = new JTextField(15);
+		txtEmail.setText(cliente.email);
+		formPanel.add(txtEmail,cons);
 		
-		
+		//CPF
 		cons.gridy = 1;
 		cons.gridx = 0;
 		cons.anchor = GridBagConstraints.WEST;
 		formPanel.add(new JLabel("CPF: "),cons);
 		
 		cons.gridx = 1;
-		formPanel.add(new JTextField(15), cons);
+		JTextField txtCPF = new JTextField(15);
+		txtCPF.setText(cliente.cpf);
+		formPanel.add(txtCPF, cons);
 		
+		
+		//CEP
 		cons.gridx  = 3;
 		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("CEP: "),cons);
 		
 		cons.gridx = 4;
-		formPanel.add(new JTextField(15),cons);
+		JTextField txtCEP = new JTextField(15);
+		txtCEP.setText(cliente.cep);
+		formPanel.add(txtCEP,cons);
 		
 		cons.gridx = 5;
 		JButton btn = new JButton();
@@ -96,28 +108,39 @@ public class FormCliente extends JFrame{
 		formPanel.add(btn,cons);		
 		
 		
+		//LOGRADOURO
 		cons.gridy = 2;
 		cons.gridx = 0;
 		cons.anchor = GridBagConstraints.WEST;
 		formPanel.add(new JLabel("Logradouro: "),cons);
 		
 		cons.gridx = 1;
-		formPanel.add(new JTextField(15),cons);
+		JTextField txtLogradouro = new JTextField(15);
+		txtLogradouro.setText(cliente.logradouro);
+		formPanel.add(txtLogradouro,cons);
 		
+		
+		//BAIRRO
 		cons.gridx = 3;
 		cons.anchor = GridBagConstraints.EAST;
 		formPanel.add(new JLabel("Bairro: "),cons);
 		
 		cons.gridx = 4;
-		formPanel.add(new JTextField(15),cons);
+		JTextField txtBairro = new JTextField(15);
+		txtBairro.setText(cliente.bairro);
+		formPanel.add(txtBairro,cons);
 		
+		
+		//CIDADE
 		cons.gridy = 3;
 		cons.gridx = 0;
 		cons.anchor = GridBagConstraints.WEST;
 		formPanel.add(new JLabel("Cidade: "),cons);
 		
+		JTextField txtCidade = new JTextField(15);
+		txtCidade.setText(cliente.cidade);
 		cons.gridx = 1;
-		formPanel.add(new JTextField(15),cons);
+		formPanel.add(txtCidade,cons);
 		
 		cons.gridx = 3;
 		cons.anchor = GridBagConstraints.EAST;
@@ -138,7 +161,9 @@ public class FormCliente extends JFrame{
 		formPanel.add(new JLabel("Telefone: "),cons);
 		
 		cons.gridx = 1;
-		formPanel.add(new JTextField(15),cons);
+		JTextField txtTelefone = new JTextField(15);
+		txtTelefone.setText(cliente.telefone);
+		formPanel.add(txtTelefone,cons);
 		
 		cons.gridx = 3;
 		formPanel.add(new JLabel("Celular: "),cons);
@@ -154,7 +179,9 @@ public class FormCliente extends JFrame{
 		formPanel.add(new JLabel("Telefone Recado:"),cons);
 		
 		cons.gridx = 1;
-		formPanel.add(new JTextField(15),cons);
+		JTextField txtTelRecado = new JTextField(15);
+		txtTelRecado.setText(cliente.telRecado);
+		formPanel.add(txtTelRecado,cons);
 		
 	      JTabbedPane pane = new JTabbedPane();  
 	      pane.add(new JPanel(), "Carro locado por este cliente" );  
