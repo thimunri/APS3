@@ -2,6 +2,7 @@ package Views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -33,14 +34,15 @@ public class FormCliente extends JFrame{
 			this.setSize(800,600);
 			inicializaComponentes();
 			this.setVisible(true);
-			
 	}
 	
 	
 	
 	private void inicializaComponentes(){
 	
-		JPanel mainPanel	= new JPanel(new BorderLayout());
+		BorderLayout border = new BorderLayout();
+		
+		JPanel mainPanel	= new JPanel(border);
 		JPanel panelTopo	= new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
 		JLabel labelTitulo	= new JLabel("Cliente");
@@ -154,7 +156,7 @@ public class FormCliente extends JFrame{
 		JComboBox comboEstado = new JComboBox(ufs);
 		formPanel.add(comboEstado,cons);
 		
-		
+		//TELEFONE
 		cons.gridy = 4;
 		cons.gridx = 0;
 		cons.anchor = GridBagConstraints.WEST;
@@ -165,6 +167,8 @@ public class FormCliente extends JFrame{
 		txtTelefone.setText(cliente.telefone);
 		formPanel.add(txtTelefone,cons);
 		
+		
+		//CELULAR
 		cons.gridx = 3;
 		formPanel.add(new JLabel("Celular: "),cons);
 		
@@ -173,6 +177,8 @@ public class FormCliente extends JFrame{
 		txtCelular.setText(cliente.celular);
 		formPanel.add(txtCelular,cons);
 		
+		
+		//TELEFONE RECADO
 		cons.gridy = 5;
 		cons.gridx = 0;
 		cons.anchor = GridBagConstraints.WEST;
@@ -183,18 +189,19 @@ public class FormCliente extends JFrame{
 		txtTelRecado.setText(cliente.telRecado);
 		formPanel.add(txtTelRecado,cons);
 		
-	      JTabbedPane pane = new JTabbedPane();  
-	      pane.add(new JPanel(), "Carro locado por este cliente" );  
-	      pane.add(new JPanel(), "Histórico de locação");  
-	      pane.add(new JPanel(), "Anotações Gerais"); 
-	      
-	      mainPanel.add(pane,BorderLayout.SOUTH);
-		
+        JTabbedPane pane = new JTabbedPane();  
+        pane.add(new JPanel(), "Carro locado por este cliente" );  
+        pane.add(new JPanel(), "Histórico de locação");  
+        pane.add(new JPanel(), "Anotações Gerais"); 
+        pane.setPreferredSize(new Dimension(0,250));
+        
+        
+        mainPanel.add(pane,BorderLayout.SOUTH);
 		
 		mainPanel.add(panelTopo,BorderLayout.NORTH);
 		mainPanel.add(formPanel,BorderLayout.WEST);
-		add(mainPanel);
 		
+		add(mainPanel);
 		
 	}
 	

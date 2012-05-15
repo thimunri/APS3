@@ -1,0 +1,8 @@
+0,1,Gol
+1,1,Parati
+2,1,Golf
+3,2,Palio
+4,2,Stilo
+5,2,Punto
+6,2,Uno
+7,2,Siena

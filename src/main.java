@@ -1,5 +1,5 @@
 import Views.FormPrincipal;
-
+import Models.AutomoveisModel;
 
 public class main {
 
@@ -10,7 +10,8 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		new FormPrincipal();
-
+		//AutomoveisModel model = new AutomoveisModel();
+		
 	}
 
 }

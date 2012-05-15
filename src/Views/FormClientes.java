@@ -40,7 +40,7 @@ public class FormClientes extends JFrame {
 		
 		btnNovoCliente	= new JButton("Novo Cliente");
 		btnDelCliente	= new JButton("Remover Cliente");
-		btnEditCliente	= new JButton("Editar Ciente");
+		btnEditCliente	= new JButton("Editar/Visualizar Ciente");
 		
 		
 		btnNovoCliente.addActionListener(new NovoClienteListener());

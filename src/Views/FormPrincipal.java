@@ -2,6 +2,7 @@ package Views;
 
 import javax.swing.*;
 
+import Listeners.ExibeAutomoveisListener;
 import Listeners.ExibeClientesListener;
 import Listeners.NovoClienteListener;
 
@@ -14,7 +15,7 @@ public class FormPrincipal extends JFrame {
 	private static JMenuBar mainMenu;
 	private static JPanel mainPanel;
 	private static JMenu menuClientes, menuCarros;
-	private static JMenuItem subNovoCliente, subExibeCliente;
+	private static JMenuItem subNovoCliente, subExibeCliente, subExibeAutomoveis;
 	
 	public FormPrincipal(){
 		this.setSize(800, 600);
@@ -42,8 +43,15 @@ public class FormPrincipal extends JFrame {
 		subExibeCliente.setIcon(new ImageIcon(getClass().getResource("/resources/icons/user_16.png")));
 		subExibeCliente.addActionListener( new ExibeClientesListener());
 		
+		subExibeAutomoveis	=	new JMenuItem("Exibir veículos cadastrados");
+		subExibeAutomoveis.setIcon(new ImageIcon(getClass().getResource("/resources/icons/car_16.png")));
+		subExibeAutomoveis.addActionListener(new ExibeAutomoveisListener());
+		
+		
 		menuClientes.add(subNovoCliente);
 		menuClientes.add(subExibeCliente);
+		
+		menuCarros.add(subExibeAutomoveis);
 		
 		mainMenu.add( menuClientes );
 		mainMenu.add( menuCarros );
