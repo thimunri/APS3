@@ -67,8 +67,16 @@ public class AutomoveisModel extends Model{
 				carro.setCod(rs.getString("id"));
 				carro.setPlaca(rs.getString("placa"));
 				carro.setAno(rs.getString("ano"));
-				carro.setFabricante(rs.getString("fabricante"));
-				carro.setModelo(rs.getString("modelo"));
+				
+				carro.setNomeFabricante(rs.getString("fabricante"));
+				carro.setCodFabricante(rs.getString("id_fabricante"));
+				carro.setNomeModelo(rs.getString("modelo"));
+				carro.setCodModelo(rs.getString("id_modelo"));
+				carro.setKm(Integer.parseInt(rs.getString("km")));
+				carro.setValorKm(Double.parseDouble(rs.getString("valor_km")));
+				carro.setDisponibilidade(rs.getString("disponibilidade"));
+				carro.setTaxa(Double.parseDouble(rs.getString("taxa")));
+				carro.setObservacoes(rs.getString("obs"));
 				
 				carros.add(carro);
 			}

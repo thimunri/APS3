@@ -2,21 +2,11 @@ package Entidades;
 
 public class Carro {
 
-	private String cod,placa, ano, modelo, fabricante, cor, vidro, direcao, ar, disponibilidade, observacoes, img;
+	private String cod,placa, ano, codModelo, nomeModelo, codFabricante, nomeFabricante, cor, vidro, direcao, ar, disponibilidade, observacoes, img;
 	private int km,portas;
 	double valorKm, taxa;
 	
-	public Carro(){
 		
-	}
-	
-	public Carro(String pl, String an , String mod, String fab){
-		placa		=	pl;
-		ano			=	an;
-		modelo		=	mod;
-		fabricante	=	fab;
-	}
-	
 	public void setCod(String cod){
 		this.cod = cod;
 	}
@@ -33,8 +23,6 @@ public class Carro {
 		return this.placa;
 	}
 	
-	
-	
 	public void setAno(String ano){
 		this.ano = ano;
 	}
@@ -45,24 +33,38 @@ public class Carro {
 	
 	
 	
-	public void setModelo(String modelo){
-		this.modelo = modelo;
+	public void setNomeModelo(String modelo){
+		this.nomeModelo = modelo;
 	}
 	
-	public String getModelo(){
-		return  this.modelo;
+	public String getNomeModelo(){
+		return  this.nomeModelo;
 	}
 	
 	
-	
-	public void setFabricante(String fabricante){
-		this.fabricante = fabricante;
+	public void setCodModelo(String cod){
+		this.codModelo = cod;
 	}
 	
-	public String getFabricante(){
-		return this.fabricante;
+	public String getCodModel(String cod){
+		return this.codModelo;
 	}
 	
+	public void setNomeFabricante(String fabricante){
+		this.nomeFabricante = fabricante;
+	}
+	
+	public String getNomeFabricante(){
+		return this.nomeFabricante;
+	}
+	
+	public void setCodFabricante(String cod){
+		this.codFabricante = cod;
+	}
+	
+	public String getCodFabricante(){
+		return this.codFabricante;
+	}
 	
 	
 	public void setCor(String cor){
