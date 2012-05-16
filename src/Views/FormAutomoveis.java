@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.*;
+
+import Listeners.NovoAutomovelListener;
 import Models.AutomoveisModel;
 import Entidades.Carro;
 
@@ -33,7 +35,10 @@ public class FormAutomoveis extends JFrame {
 		JPanel panelBotoes		= new JPanel(new FlowLayout(FlowLayout.RIGHT));
 		panelBotoes.setBackground(new Color(255,255,255));
 		
-		panelBotoes.add(new JButton("Adicionar"));
+		JButton btnAddAutomovel	=	new JButton("Adicionar");
+		btnAddAutomovel.addActionListener(new NovoAutomovelListener());
+		
+		panelBotoes.add(btnAddAutomovel);
 		panelBotoes.add(new JButton("Remover"));
 		panelBotoes.add(new JButton("Editar/Visualizar"));
 		

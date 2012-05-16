@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 import Entidades.Carro;
+import Entidades.Fabricante;
+import Entidades.ModeloAutomovel;
 
 public class AutomoveisModel extends Model{
 
@@ -20,35 +22,57 @@ public class AutomoveisModel extends Model{
 	
 	
 	
-	public void getFabricantes(){
+	public ArrayList<Fabricante> getFabricantes(){
+		
+		ArrayList<Fabricante> fabricantes = new ArrayList<Fabricante>();
+		
 		try{
 			stm = Model.getConection().createStatement();
 			rs	= stm.executeQuery("SELECT * FROM fabricante_automoveis");
 			while(rs.next()){
-				System.out.println(rs.getString("nome"));
+				Fabricante fabricante = new Fabricante();
+				fabricante.setId( rs.getString("id") );
+				fabricante.setNome( rs.getString("nome") );
+				fabricantes.add(fabricante);
 			}
+			
 		}
 		catch(SQLException e){
 			
 		}
+		return fabricantes;
 	}
 	
 	
-	public void getModelos(int idFabricante){
+	
+	
+	public ArrayList<ModeloAutomovel> getModelos(String idFabricante){
 
+		ArrayList<ModeloAutomovel> modelos = new ArrayList<ModeloAutomovel>();
+		
 		try{
 			
 			stm = Model.getConection().createStatement();
 			rs	= stm.executeQuery("SELECT * FROM modelo_automoveis WHERE id_fabricante = " + idFabricante);
 
 			while(rs.next()){
-				System.out.println(rs.getString("nome"));
+				ModeloAutomovel modelo = new ModeloAutomovel();
+				
+				modelo.id	=	rs.getString("id");
+				modelo.nome	=	rs.getString("nome");
+				
+				modelos.add(modelo);
 			}
 			
 		} 
+		
 		catch(SQLException e) {
 			
 		}
+
+		return modelos;
+		
+		
 	}
 	
 	
