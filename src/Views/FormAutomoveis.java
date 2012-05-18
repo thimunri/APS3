@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import Listeners.NovoAutomovelListener;
 import Models.AutomoveisModel;
-import Entidades.Carro;
+import Entidades.Automovel;
 
 public class FormAutomoveis extends JFrame {
  
@@ -67,10 +67,10 @@ public class FormAutomoveis extends JFrame {
 	
 	public void populaTabela(){
 		AutomoveisModel model = new AutomoveisModel();
-		ArrayList<Carro> carros = model.getAutomoveis();
+		ArrayList<Automovel> carros = model.getAutomoveis();
 		
-		for( Carro carro:carros ){
-			modelAutomoveis.addRow(new String[]{carro.getCod(),carro.getPlaca(), carro.getNomeFabricante(),carro.getNomeModelo()});
+		for( Automovel carro:carros ){
+			modelAutomoveis.addRow(new String[]{carro.getCod(),carro.getPlaca(), carro.getFabricante().toString(),carro.getModelo().toString(),"d"});
 		}
 	}
 	

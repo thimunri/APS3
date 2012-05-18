@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -42,16 +44,30 @@ public class FormCliente extends JFrame{
 	
 		BorderLayout border = new BorderLayout();
 		
-		JPanel mainPanel	= new JPanel(border);
-		JPanel panelTopo	= new JPanel(new FlowLayout(FlowLayout.LEFT));
+		JPanel mainPanel	= new JPanel(new BorderLayout());
+		
+		JPanel panelTopo	= new JPanel(new BorderLayout());
+		JPanel panelBotoes	= new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		
+		JButton btnAlugar = new JButton("Alugar um veiculo");
+		btnAlugar.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent arg0) {
+				new FormNovaLocacao(cliente);				
+			}
+			
+		});
+		
+		panelBotoes.add(btnAlugar);
+		panelBotoes.setBackground(new Color(255,255,255));
 		
 		JLabel labelTitulo	= new JLabel("Cliente");
-		
 		labelTitulo.setIcon(new ImageIcon( getClass().getResource("/resources/icons/user_add_32.png")));
 		labelTitulo.setFont(new Font("Arial Narrow", Font.BOLD, 24));
 		
 		panelTopo.setBackground(new Color(255,255,255));
-		panelTopo.add(labelTitulo);
+		panelTopo.add(labelTitulo,BorderLayout.WEST);
+		panelTopo.add(panelBotoes,BorderLayout.EAST);
 		
 		
 		JPanel	formPanel		=	new JPanel(new GridBagLayout());

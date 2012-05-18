@@ -1,15 +1,19 @@
 package Views;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import Models.AutomoveisModel;
+import Entidades.Automovel;
 import Entidades.Fabricante;
 import Entidades.ModeloAutomovel;
 
@@ -21,8 +25,9 @@ import java.util.ArrayList;
 public class FormNovoAutomovel extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	private JTextField ano;
-	private static JComboBox comboFabricante, comboModelo;
+	private JTextField ano,placa, km, valorKm, taxa;
+	private static JComboBox comboFabricante, comboModelo, cor;
+	private JTextArea obs;
 	
 	public FormNovoAutomovel(){
 		super("Fiction Locadora de Veículos - Novo Automóvel");
@@ -38,13 +43,15 @@ public class FormNovoAutomovel extends JFrame{
 		JPanel topoPanel	= new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
 		JLabel lblTitulo	=	new JLabel("Adicionar Automóvel");
+		lblTitulo.setIcon( new ImageIcon( getClass().getResource("/resources/icons/car_add_32.png")));
 		lblTitulo.setFont(new Font("Arial Narrow", Font.BOLD, 24));
+		topoPanel.setBackground(new Color(255,255,255));
 		topoPanel.add(lblTitulo,BorderLayout.NORTH);
 		
 		JPanel formPanel		= new JPanel(new GridBagLayout());
 		GridBagConstraints cons = new GridBagConstraints();
 		
-
+		//PLACA
 		cons.gridx = 0;
 		cons.gridy = 0;
 		cons.insets= new Insets(5,5,5,5);
@@ -52,8 +59,11 @@ public class FormNovoAutomovel extends JFrame{
 		formPanel.add(new JLabel("Placa: "),cons);
 		
 		cons.gridx  = 2;
-		formPanel.add(new JTextField(15),cons);
+		placa	=	new JTextField(15);
+		formPanel.add(placa,cons);
 		
+		
+		//ANO
 		cons.gridy = 1;
 		cons.gridx = 0;
 		formPanel.add(new JLabel("Ano de Fabricação: "),cons);
@@ -62,6 +72,8 @@ public class FormNovoAutomovel extends JFrame{
 		ano = new JTextField(15);
 		formPanel.add(ano,cons);
 		
+		
+		//FABRICANTE
 		cons.gridy = 2;
 		cons.gridx = 0;
 		formPanel.add(new JLabel("Fabricante: "),cons);
@@ -82,6 +94,8 @@ public class FormNovoAutomovel extends JFrame{
 		populaFabricantes();
 		formPanel.add(comboFabricante,cons);
 		
+		
+		//MODELO
 		cons.gridy = 3;
 		cons.gridx = 0;
 		formPanel.add(new JLabel("Modelo: "),cons);
@@ -89,13 +103,8 @@ public class FormNovoAutomovel extends JFrame{
 		cons.gridx = 2;
 		formPanel.add(comboModelo,cons);
 		
-		cons.gridy = 4;
-		cons.gridx = 0;
-		formPanel.add(new JLabel("Cor: "),cons);
 		
-		cons.gridx = 2;
-		formPanel.add(new JComboBox(new String[]{"Preto","Branco","Prata"}),cons);
-		
+		//DETALHES
 		cons.gridy = 5;
 		cons.gridx = 0;
 		cons.gridwidth = 5;
@@ -111,6 +120,8 @@ public class FormNovoAutomovel extends JFrame{
 		panelDetalhes.add(new JCheckBox());
 		panelDetalhes.add(new JLabel("Portas"));
 		panelDetalhes.add(new JComboBox(new String[]{"2","4"}));
+		panelDetalhes.add(new JLabel("Cor: "));
+		panelDetalhes.add(new JComboBox(new String[]{"Vermelho","Prata"}));
 		
 		formPanel.add(panelDetalhes,cons);	
 		
@@ -121,21 +132,28 @@ public class FormNovoAutomovel extends JFrame{
 		formPanel.add(new JLabel("Kilometragem:"),cons);
 		
 		cons.gridx = 2;
-		formPanel.add(new JTextField(10),cons);
+		km	=	new JTextField(10);
+		formPanel.add(km,cons);
 		
+		
+		//PRECO KM
 		cons.gridy = 7;
 		cons.gridx = 0;
 		formPanel.add(new JLabel("Preço KM: "),cons);
 		
 		cons.gridx = 2;
-		formPanel.add(new JTextField(10),cons);
+		valorKm	=	new JTextField(10);
+		formPanel.add(valorKm,cons);
 		
+		
+		//TAXA
 		cons.gridy = 8;
 		cons.gridx = 0;
 		formPanel.add(new JLabel("Taxa Diaria: "),cons);
 		
 		cons.gridx = 2;
-		formPanel.add(new JTextField(10),cons);
+		taxa = new JTextField(10);
+		formPanel.add(taxa,cons);
 		
 		
 		cons.gridy = 9;
@@ -144,17 +162,40 @@ public class FormNovoAutomovel extends JFrame{
 		
 		cons.gridx = 2;
 		cons.gridwidth = 5;
-		JTextArea obs = new JTextArea(5,25);		
+		obs = new JTextArea(5,25);		
 		JScrollPane scrollObs = new JScrollPane(obs);
 		
 		//obs.setLineWrap(true);
 		formPanel.add(scrollObs,cons);
 		
+		JPanel panelBottom 	= 	new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		JButton btnSalvar 	=	new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				AutomoveisModel model = new AutomoveisModel();
+				if( model.salva(getAutomovel()) ){
+					JOptionPane.showMessageDialog(null, "Automovel cadastrado com sucesso!");
+					fechar();
+				} 
+		}});
+		
+		
+		JButton btnCancelar	=	new JButton("Cancelar");
+		
+		panelBottom.add(btnSalvar);
+		panelBottom.add(new JButton("Cancelar"));
+		
+
 		mainPanel.add(topoPanel,BorderLayout.NORTH);
 		mainPanel.add(formPanel,BorderLayout.CENTER);
+		mainPanel.add(panelBottom,BorderLayout.SOUTH);
 		add(mainPanel);
 	}
 	
+	public void fechar(){
+		this.dispose();
+	}
 	
 	public void populaFabricantes(){
 		
@@ -169,16 +210,33 @@ public class FormNovoAutomovel extends JFrame{
 	
 	
 	/*
-	 * Métodos responsavel por popular um ComboBox 
+	 * Método responsavel por popular um ComboBox 
 	 */
 	public void populaModelos(String idFabricante){
 		AutomoveisModel model = new AutomoveisModel();
 		ArrayList<ModeloAutomovel> modelos = model.getModelos(idFabricante);
 		comboModelo.removeAllItems();
 		for(ModeloAutomovel modelo:modelos){
-			comboModelo.addItem(modelo.nome);
-			
+			comboModelo.addItem(modelo);
 		}
 	}
+	
+	
+	public Automovel getAutomovel(){
+		Automovel novoAutomovel = new Automovel();
+		Fabricante 			f = (Fabricante) comboFabricante.getSelectedItem();
+		ModeloAutomovel		m = (ModeloAutomovel) comboModelo.getSelectedItem();
+		
+		novoAutomovel.setPlaca(placa.getText());
+		novoAutomovel.setAno(ano.getText());
+		novoAutomovel.setFabricante(f);
+		novoAutomovel.setModelo(m);
+		novoAutomovel.setKm(km.getText());
+		novoAutomovel.setValorKm(valorKm.getText());
+		novoAutomovel.setTaxa(taxa.getText());
+		
+		return novoAutomovel;
+	}
+	
 	
 }
