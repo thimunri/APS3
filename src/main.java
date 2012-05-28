@@ -1,3 +1,4 @@
+import Views.FormBuscaAutomovel;
 import Views.FormNovaLocacao;
 import Views.FormNovoAutomovel;
 import Views.FormPrincipal;
@@ -12,8 +13,8 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		new FormPrincipal();
-		new FormNovaLocacao();
-		
+		//new FormNovaLocacao();
+		new FormBuscaAutomovel();
 	}
 
 }

@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -26,6 +28,8 @@ public class FormNovaLocacao extends JFrame {
 		inicializaComponentes();
 		this.setVisible(true);
 	}
+	
+	
 	
 	public FormNovaLocacao(Cliente c){
 		
@@ -73,6 +77,11 @@ public class FormNovaLocacao extends JFrame {
 		cons.gridwidth = 1;
 		JButton btn	=	new JButton("");
 		btn.setIcon( new ImageIcon( getClass().getResource("/resources/icons/find_16.png")));
+		btn.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		panelCliente.add(btn,cons);
 		
 		cons.gridy = 1;
@@ -154,6 +163,14 @@ public class FormNovaLocacao extends JFrame {
 		consCarro.gridx = 2;
 		JButton btnAuto = new JButton("");
 		btnAuto.setIcon( new ImageIcon( getClass().getResource("/resources/icons/find_16.png")));
+		btnAuto.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				new FormBuscaAutomovel();
+			}
+			
+		});
+		
 		panelCarro.add(btnAuto,consCarro);
 		
 		consCarro.gridy = 1;

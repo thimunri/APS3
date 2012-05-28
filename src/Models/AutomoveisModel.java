@@ -101,7 +101,7 @@ public class AutomoveisModel extends Model{
 	}
 	
 	
-	
+
 	public ArrayList<Automovel> getAutomoveis(){
 		
 		ArrayList<Automovel> carros = new ArrayList<Automovel>();
@@ -133,6 +133,16 @@ public class AutomoveisModel extends Model{
 		
 		return carros;
 		
+	}
+	
+	
+	public Automovel getAutomovelByModelo(String modelo){
+		Automovel auto = new Automovel();
+		
+		
+		
+		
+		return auto;
 	}
 	
 }
