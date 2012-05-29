@@ -201,7 +201,7 @@ public class FormNovaLocacao extends JFrame {
 		consCarro.gridy			= 1;
 		consCarro.gridx			= 0;
 		consCarro.gridwidth		= 5;
-		modelBuscaAutomoveis	= new DefaultTableModel(null,new String[]{"Cod","Fabricante","Modelo","Ano"});
+		modelBuscaAutomoveis	= new DefaultTableModel(null,new String[]{"Cod","Fabricante","Modelo","Ano","Disponivel"});
 		JTable tableResultAuto	= new JTable(modelBuscaAutomoveis);
 		
 		JScrollPane scrollResultAuto = new JScrollPane(tableResultAuto);
@@ -244,10 +244,13 @@ public class FormNovaLocacao extends JFrame {
 		formPanel.add(panelCarro,consFormPanel);
 		
 		
-		
+		JPanel panelBotoesRodape = new JPanel(new FlowLayout( FlowLayout.RIGHT ));
+		panelBotoesRodape.add(new JButton("Finalizar Locacao"));
 		
 		mainPanel.add(formPanel,BorderLayout.CENTER);
 		mainPanel.add(topoPanel,BorderLayout.NORTH);
+		mainPanel.add(panelBotoesRodape,BorderLayout.SOUTH);
+		
 		add(mainPanel);
 	}
 	
@@ -283,6 +286,7 @@ public class FormNovaLocacao extends JFrame {
 		AutomoveisModel model = new AutomoveisModel();
 		ArrayList<ModeloAutomovel> modelos = model.getModelos(idFabricante);
 		comboModelo.removeAllItems();
+		
 		for(ModeloAutomovel modelo:modelos){
 			comboModelo.addItem(modelo);
 		}
@@ -303,7 +307,7 @@ public class FormNovaLocacao extends JFrame {
 	}
 	
 	public static void insereLinhaResultAutomoveis(Automovel carro){
-		modelBuscaAutomoveis.addRow(new String[]{carro.getCod(), carro.getFabricante().toString(),carro.getModelo().toString(), carro.getAno()});
+		modelBuscaAutomoveis.addRow(new String[]{carro.getCod(), carro.getFabricante().toString(),carro.getModelo().toString(), carro.getAno(),carro.getDisponibilidade()});
 	}
 	
 	

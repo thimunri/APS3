@@ -13,7 +13,7 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		new FormPrincipal();
-		new FormNovaLocacao();
+		//new FormNovaLocacao();
 		//new FormBuscaAutomovel();
 		
 	}

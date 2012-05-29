@@ -96,6 +96,10 @@ public class Automovel {
 		this.disponibilidade = disp;
 	}
 	
+	public String getDisponibilidade(){
+		return this.disponibilidade;
+	}
+	
 	
 	public void setObservacoes(String obs){
 		this.observacoes = obs;

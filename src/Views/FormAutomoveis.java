@@ -70,7 +70,7 @@ public class FormAutomoveis extends JFrame {
 		ArrayList<Automovel> carros = model.getAutomoveis();
 		
 		for( Automovel carro:carros ){
-			modelAutomoveis.addRow(new String[]{carro.getCod(),carro.getPlaca(), carro.getFabricante().toString(),carro.getModelo().toString(),"d"});
+			modelAutomoveis.addRow(new String[]{carro.getCod(),carro.getPlaca(), carro.getFabricante().toString(),carro.getModelo().toString(),carro.getDisponibilidade()});
 		}
 	}
 	

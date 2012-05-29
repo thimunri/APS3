@@ -148,7 +148,7 @@ public class AutomoveisModel extends Model{
 		
 		try{
 			stm = Model.getConection().createStatement();
-			rs	= stm.executeQuery("SELECT automoveis.*, fabricante_automoveis.nome AS fabricante, modelo_automoveis.nome AS modelo FROM automoveis LEFT JOIN fabricante_automoveis ON (automoveis.id_fabricante = fabricante_automoveis.id) LEFT JOIN modelo_automoveis ON ( automoveis.id_modelo = modelo_automoveis.id) WHERE id_fabricante = '"+fab.getId()+"'");  
+			rs	= stm.executeQuery("SELECT automoveis.*, fabricante_automoveis.nome AS fabricante, modelo_automoveis.nome AS modelo FROM automoveis LEFT JOIN fabricante_automoveis ON (automoveis.id_fabricante = fabricante_automoveis.id) LEFT JOIN modelo_automoveis ON ( automoveis.id_modelo = modelo_automoveis.id) WHERE id_fabricante = '"+fab.getId()+"' AND id_modelo LIKE '%"+mod.getId()+"%'");  
 			
 			while (rs.next()){
 				Automovel carro = new Automovel();
