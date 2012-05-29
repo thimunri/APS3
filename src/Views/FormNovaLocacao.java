@@ -2,6 +2,7 @@ package Views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -9,16 +10,27 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
+import Entidades.Automovel;
 import Entidades.Cliente;
+import Entidades.Fabricante;
+import Entidades.ModeloAutomovel;
+import Listeners.BuscarAutomoveisListener;
+import Models.AutomoveisModel;
 
 public class FormNovaLocacao extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private static JComboBox comboFabricante, comboModelo;
 	private Cliente cliente;
+	private static DefaultTableModel modelBuscaAutomoveis;
 	
 	private JTextField cpf,nome,email,logradouro, bairro, cidade, uf, cep;
 
@@ -147,39 +159,59 @@ public class FormNovaLocacao extends JFrame {
 		
 		//Cria o subFormulario de Automovel
 		JPanel panelCarro = new JPanel(new GridBagLayout());
-		panelCarro.setBorder(new TitledBorder("Detalhes Automovel"));
+		panelCarro.setBorder(new TitledBorder("Utilize os campos abaixo para localizar o automovel"));
 		
 		GridBagConstraints consCarro = new GridBagConstraints();
 		cons.gridx = 0;
 		cons.gridy = 0;
 		
-		panelCarro.add(new JLabel("Placa: "),consCarro);
-		
-		consCarro.gridx = 1;
-		consCarro.insets = new Insets(5,5,5,5);
-		panelCarro.add(new JTextField(10),consCarro);
-		
-		
-		consCarro.gridx = 2;
-		JButton btnAuto = new JButton("");
-		btnAuto.setIcon( new ImageIcon( getClass().getResource("/resources/icons/find_16.png")));
-		btnAuto.addActionListener(new ActionListener(){
-
-			public void actionPerformed(ActionEvent e) {
-				new FormBuscaAutomovel();
-			}
-			
-		});
-		
-		panelCarro.add(btnAuto,consCarro);
-		
-		consCarro.gridy = 1;
-		consCarro.gridx = 0;
 		panelCarro.add(new JLabel("Fabricante: "),consCarro);
 		
 		consCarro.gridx = 1;
-		panelCarro.add(new JTextField(10),consCarro);
+		consCarro.insets = new Insets(5,5,5,5);
 		
+		comboFabricante = new JComboBox();
+		comboModelo = new JComboBox();
+		comboFabricante.addItemListener(new ItemListener(){
+
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					Fabricante f = (Fabricante) e.getItem();
+					populaModelos(f.getId());
+				}
+			}
+		});
+		populaFabricantes();
+		panelCarro.add(comboFabricante,consCarro);
+		
+		
+		//MODELO
+		consCarro.gridx = 2;
+		panelCarro.add(new JLabel("Modelo: "),consCarro);
+		
+		consCarro.gridx = 3;
+		panelCarro.add(comboModelo,consCarro);
+		
+		consCarro.gridx = 4;
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.addActionListener(new BuscarAutomoveisListener());
+		panelCarro.add(btnBuscar,consCarro);
+		
+		
+		consCarro.gridy			= 1;
+		consCarro.gridx			= 0;
+		consCarro.gridwidth		= 5;
+		modelBuscaAutomoveis	= new DefaultTableModel(null,new String[]{"Cod","Fabricante","Modelo","Ano"});
+		JTable tableResultAuto	= new JTable(modelBuscaAutomoveis);
+		
+		JScrollPane scrollResultAuto = new JScrollPane(tableResultAuto);
+		scrollResultAuto.setPreferredSize(new Dimension(700,200));
+		//JPanel panelResult = new JPanel(new BorderLayout());
+		
+		
+		panelCarro.add(scrollResultAuto,consCarro);
+		
+		/*
 		consCarro.gridx = 2;
 		panelCarro.add(new JLabel("Modelo: "),consCarro);
 		
@@ -203,7 +235,7 @@ public class FormNovaLocacao extends JFrame {
 		panelCarro.add(new JLabel("Preço KM: "),consCarro);
 		
 		consCarro.gridx = 3;
-		panelCarro.add(new JTextField(15),consCarro);
+		panelCarro.add(new JTextField(15),consCarro);*/
 		
 		
 		
@@ -231,6 +263,49 @@ public class FormNovaLocacao extends JFrame {
 		cep.setText(c.cep);
 		
 	}
+	
+	public void populaFabricantes(){
+		
+		AutomoveisModel model = new AutomoveisModel();
+		ArrayList<Fabricante> fabricantes = model.getFabricantes();
+		
+		for(Fabricante fabricante:fabricantes){
+			comboFabricante.addItem(fabricante);
+		}
+		
+	}	
+	
+	/*
+	 * Popula'
+	 */
+	
+	public void populaModelos(String idFabricante){
+		AutomoveisModel model = new AutomoveisModel();
+		ArrayList<ModeloAutomovel> modelos = model.getModelos(idFabricante);
+		comboModelo.removeAllItems();
+		for(ModeloAutomovel modelo:modelos){
+			comboModelo.addItem(modelo);
+		}
+	}
+	
+	public static Fabricante getFabricante(){
+		return (Fabricante) comboFabricante.getSelectedItem();
+	}
+	
+	
+	public static ModeloAutomovel getModelo(){
+		return (ModeloAutomovel) comboModelo.getSelectedItem();
+	}
+	
+	
+	public static void ZeraResult(){
+		modelBuscaAutomoveis.setRowCount(0);
+	}
+	
+	public static void insereLinhaResultAutomoveis(Automovel carro){
+		modelBuscaAutomoveis.addRow(new String[]{carro.getCod(), carro.getFabricante().toString(),carro.getModelo().toString(), carro.getAno()});
+	}
+	
 	
 	
 }

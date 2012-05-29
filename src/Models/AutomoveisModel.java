@@ -16,6 +16,8 @@ public class AutomoveisModel extends Model{
 	Statement stm;
 	ResultSet rs;
 	
+	
+	
 	public AutomoveisModel(){
 		super();
 	}
@@ -136,12 +138,48 @@ public class AutomoveisModel extends Model{
 	}
 	
 	
+	
+	
+	
+	public ArrayList<Automovel> getAutomoveis(Fabricante fab, ModeloAutomovel mod){
+		ArrayList<Automovel> carros = new ArrayList<Automovel>();
+		Fabricante 			fabricante	= fab;
+		ModeloAutomovel		modelo		= mod;
+		
+		try{
+			stm = Model.getConection().createStatement();
+			rs	= stm.executeQuery("SELECT automoveis.*, fabricante_automoveis.nome AS fabricante, modelo_automoveis.nome AS modelo FROM automoveis LEFT JOIN fabricante_automoveis ON (automoveis.id_fabricante = fabricante_automoveis.id) LEFT JOIN modelo_automoveis ON ( automoveis.id_modelo = modelo_automoveis.id) WHERE id_fabricante = '"+fab.getId()+"'");  
+			
+			while (rs.next()){
+				Automovel carro = new Automovel();
+				
+				carro.setCod(rs.getString("id"));
+				carro.setPlaca(rs.getString("placa"));
+				carro.setAno(rs.getString("ano"));
+				carro.setFabricante(new Fabricante(rs.getString("id_fabricante"), rs.getString("fabricante")));
+				carro.setModelo(new ModeloAutomovel(rs.getString("id_modelo"), rs.getString("modelo")));
+				carro.setKm(rs.getString("km"));
+				carro.setValorKm(rs.getString("valor_km"));
+				carro.setDisponibilidade(rs.getString("disponibilidade"));
+				carro.setTaxa(rs.getString("taxa"));
+				carro.setObservacoes(rs.getString("obs"));
+				
+				carros.add(carro);
+			}
+		}
+		catch(SQLException e){
+			
+		}
+		
+		return carros;
+	}
+	
+	
+	
+	
+	
 	public Automovel getAutomovelByModelo(String modelo){
 		Automovel auto = new Automovel();
-		
-		
-		
-		
 		return auto;
 	}
 	

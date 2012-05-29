@@ -13,8 +13,9 @@ public class main {
 		// TODO Auto-generated method stub
 		
 		new FormPrincipal();
-		//new FormNovaLocacao();
-		new FormBuscaAutomovel();
+		new FormNovaLocacao();
+		//new FormBuscaAutomovel();
+		
 	}
 
 }
