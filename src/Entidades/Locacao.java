@@ -6,7 +6,7 @@ public class Locacao {
 
 	private Automovel automovel;
 	private Cliente cliente;
-	private String status, valor;
+	private String status, valor, kmAtual, kmRodada;
 	private Date dataDevolucao, dataLocacao;
 	
 	

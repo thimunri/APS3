@@ -23,14 +23,16 @@ import Entidades.Cliente;
 import Entidades.Fabricante;
 import Entidades.ModeloAutomovel;
 import Listeners.BuscarAutomoveisListener;
+import Listeners.FinalizaLocacaoListener;
 import Models.AutomoveisModel;
 
 public class FormNovaLocacao extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private static JComboBox comboFabricante, comboModelo;
-	private Cliente cliente;
+	private static Cliente cliente;
 	private static DefaultTableModel modelBuscaAutomoveis;
+	private static JTable tableResultAuto;
 	
 	private JTextField cpf,nome,email,logradouro, bairro, cidade, uf, cep;
 
@@ -46,7 +48,7 @@ public class FormNovaLocacao extends JFrame {
 	public FormNovaLocacao(Cliente c){
 		
 		super("Fiction");
-		cliente = c;
+		this.cliente = c;
 		this.setSize(800,600);
 		inicializaComponentes();
 		setSubFormCliente(c);
@@ -201,8 +203,8 @@ public class FormNovaLocacao extends JFrame {
 		consCarro.gridy			= 1;
 		consCarro.gridx			= 0;
 		consCarro.gridwidth		= 5;
-		modelBuscaAutomoveis	= new DefaultTableModel(null,new String[]{"Cod","Fabricante","Modelo","Ano","Disponivel"});
-		JTable tableResultAuto	= new JTable(modelBuscaAutomoveis);
+		modelBuscaAutomoveis	= new DefaultTableModel(null,new String[]{"Cod","Fabricante","Modelo","Ano","Taxa Diaria","Valor KM","Kilometragem","Disponivel"});
+		tableResultAuto			= new JTable(modelBuscaAutomoveis);
 		
 		JScrollPane scrollResultAuto = new JScrollPane(tableResultAuto);
 		scrollResultAuto.setPreferredSize(new Dimension(700,200));
@@ -245,7 +247,10 @@ public class FormNovaLocacao extends JFrame {
 		
 		
 		JPanel panelBotoesRodape = new JPanel(new FlowLayout( FlowLayout.RIGHT ));
-		panelBotoesRodape.add(new JButton("Finalizar Locacao"));
+		JButton btnFinaliza = new JButton("Finalizar Locacao");
+		btnFinaliza.addActionListener(new FinalizaLocacaoListener());
+		
+		panelBotoesRodape.add(btnFinaliza);
 		
 		mainPanel.add(formPanel,BorderLayout.CENTER);
 		mainPanel.add(topoPanel,BorderLayout.NORTH);
@@ -307,9 +312,26 @@ public class FormNovaLocacao extends JFrame {
 	}
 	
 	public static void insereLinhaResultAutomoveis(Automovel carro){
-		modelBuscaAutomoveis.addRow(new String[]{carro.getCod(), carro.getFabricante().toString(),carro.getModelo().toString(), carro.getAno(),carro.getDisponibilidade()});
+		modelBuscaAutomoveis.addRow(new String[]{carro.getCod(), carro.getFabricante().toString(),carro.getModelo().toString(), carro.getAno(),carro.getTaxa(),carro.getValorKm(),carro.getKm(),carro.getDisponibilidade()});
 	}
 	
+	
+	public static Automovel getSelectedAutomovel(){
+		Automovel auto	= new Automovel();
+		int linha		= tableResultAuto.getSelectedRow();
+		if(linha == -1){
+			JOptionPane.showMessageDialog(null, "Voce precisa selecionar um automovel");
+		} else {
+			auto.setCod( (String) modelBuscaAutomoveis.getValueAt(linha, 0) );
+			auto.setDisponibilidade( (String) modelBuscaAutomoveis.getValueAt(linha,7));
+			auto.setKm( (String) modelBuscaAutomoveis.getValueAt(linha, 6));
+		}
+		return auto;
+	}
+	
+	public static Cliente getCliente(){
+		return FormNovaLocacao.cliente;
+	}
 	
 	
 }

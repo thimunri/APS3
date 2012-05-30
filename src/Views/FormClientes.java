@@ -96,6 +96,7 @@ public class FormClientes extends JFrame {
 		
 		int linha = table.getSelectedRow();
 		
+		c.cod			= (String) modelClientes.getValueAt(linha, 0);
 		c.nome 			= (String) modelClientes.getValueAt(linha, 1);
 		c.email			= (String) modelClientes.getValueAt(linha, 2);
 		c.cpf			= (String) modelClientes.getValueAt(linha, 3);
