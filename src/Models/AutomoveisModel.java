@@ -178,9 +178,4 @@ public class AutomoveisModel extends Model{
 	
 	
 	
-	public Automovel getAutomovelByModelo(String modelo){
-		Automovel auto = new Automovel();
-		return auto;
-	}
-	
 }

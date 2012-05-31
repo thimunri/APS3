@@ -91,6 +91,33 @@ public class ClienteModel extends Model {
 	}
 	
 	
+	/*
+	 * Verifica se o cliente ja possui uma locacao 
+	 */
+	
+	public int possuiPendencia(String cod){
+		int ret = 0;
+		
+		try{
+			stm		= Model.getConection().createStatement();
+			rs		= stm.executeQuery("SELECT COUNT(id) AS cont FROM locacoes WHERE id_cliente = '"+cod+"' AND status IS NULL");
+			rs.next();
+			
+			if(rs.getString("cont").equals("1")){
+				ret = 1;
+			}
+		}
+		catch(SQLException e){
+			JOptionPane.showMessageDialog(null, "ERRO: "+e.getMessage());
+		}
+
+		return ret;
+	}
+
+	
+	
+	
+	
 	public ArrayList<Cliente> getClientes() {
 
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();

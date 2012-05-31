@@ -1,12 +1,12 @@
 package Entidades;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Locacao {
 
 	private Automovel automovel;
 	private Cliente cliente;
-	private String status, valor, kmAtual, kmRodada;
+	private String status, valor, kmInicial, kmRodada;
 	private Date dataDevolucao, dataLocacao;
 	
 	
@@ -56,5 +56,13 @@ public class Locacao {
 	
 	public String getValor(){
 		return this.valor;
+	}
+	
+	public void setKmInicial(String km){
+		this.kmInicial = km;
+	}
+	
+	public String getKmInicial(){
+		return this.kmInicial;
 	}
 }

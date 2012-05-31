@@ -16,11 +16,15 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import Entidades.Cliente;
+import Entidades.Locacao;
+import Models.ClienteModel;
+import Models.LocacoesModel;
 
 public class FormCliente extends JFrame{
 
@@ -53,7 +57,13 @@ public class FormCliente extends JFrame{
 		btnAlugar.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent arg0) {
-				new FormNovaLocacao(cliente);				
+				
+				ClienteModel model = new ClienteModel();
+				if(model.possuiPendencia(cliente.cod) == 1){
+					JOptionPane.showMessageDialog(null, "Este cliente ja possui um automovel alugado, nao e possivel alugar um novo automovel");
+				} else {
+					new FormNovaLocacao(cliente);
+				}
 			}
 			
 		});
@@ -205,14 +215,39 @@ public class FormCliente extends JFrame{
 		txtTelRecado.setText(cliente.telRecado);
 		formPanel.add(txtTelRecado,cons);
 		
-        JTabbedPane pane = new JTabbedPane();  
-        pane.add(new JPanel(), "Carro locado por este cliente" );  
-        pane.add(new JPanel(), "Histórico de locação");  
-        pane.add(new JPanel(), "Anotações Gerais"); 
-        pane.setPreferredSize(new Dimension(0,250));
+		
+		//Painel de abas
+        JTabbedPane tabbedPane = new JTabbedPane();
         
         
-        mainPanel.add(pane,BorderLayout.SOUTH);
+        //Aba Carro Alugado -----------------------------------------------------------------
+        JPanel panelCarroAlugado		= new JPanel(new GridBagLayout());
+        GridBagConstraints consCarro	= new GridBagConstraints();
+        
+        ClienteModel model = new ClienteModel();
+        
+        if(model.possuiPendencia(cliente.cod) == 1){
+        LocacoesModel modelLocacao		= new LocacoesModel();
+        Locacao locacaoAtual = modelLocacao.getLocacaoCliente(cliente);
+        
+        consCarro.gridx = 0;
+        consCarro.gridy = 0;
+        panelCarroAlugado.add(new JLabel("Data da locacao: "+locacaoAtual.getDataLocacao()),consCarro);
+        consCarro.gridy = 1;
+        panelCarroAlugado.add(new JLabel("Automovel Alugado: " + locacaoAtual.getAutomovel().getModelo()),consCarro);
+        consCarro.gridy = 2;
+        panelCarroAlugado.add(new JLabel("Kilometragem na data da locacao: " + locacaoAtual.getKmInicial()),consCarro);
+        }
+        
+        tabbedPane.add(panelCarroAlugado, "Carro locado por este cliente" );
+        //------------------------------------------------------------------------------------
+        
+        tabbedPane.add(new JPanel(), "Histórico de locação");  
+        tabbedPane.add(new JPanel(), "Anotações Gerais"); 
+        tabbedPane.setPreferredSize(new Dimension(0,250));
+        
+        
+        mainPanel.add(tabbedPane,BorderLayout.SOUTH);
 		
 		mainPanel.add(panelTopo,BorderLayout.NORTH);
 		mainPanel.add(formPanel,BorderLayout.WEST);

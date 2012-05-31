@@ -2,6 +2,7 @@ package Listeners;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 import javax.swing.JOptionPane;
 
@@ -20,15 +21,17 @@ public class FinalizaLocacaoListener implements ActionListener {
 		
 		if(auto.getCod() != null){
 			if(auto.getDisponibilidade().equals("Sim")){
-				
+			
 			Locacao novaLocacao = new Locacao();
 			novaLocacao.setCliente(cliente);
 			novaLocacao.setAutomovel(auto);
+			novaLocacao.setDataLocacao(new Date());
+			
 			
 			LocacoesModel model = new LocacoesModel();
-			model.salva(novaLocacao);
+			model.salva(novaLocacao);		
 			
-			
+			JOptionPane.showMessageDialog(null, "Locacao realizada com sucesso");
 				
 			}
 			
